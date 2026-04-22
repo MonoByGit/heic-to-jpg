@@ -260,7 +260,9 @@ export default function HeicConverter() {
                           {' → '}
                           {formatBytes(f.blob.size)}{' '}
                           <span className="text-green-600">
-                            ({Math.round((1 - f.blob.size / f.file.size) * 100)}% smaller)
+                            ({f.blob.size >= f.file.size
+                              ? `${Math.round((f.blob.size / f.file.size - 1) * 100)}% larger`
+                              : `${Math.round((1 - f.blob.size / f.file.size) * 100)}% smaller`}
                           </span>
                         </>
                       )}
